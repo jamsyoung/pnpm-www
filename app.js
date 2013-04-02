@@ -33,7 +33,7 @@ app.configure(function () {
 /* routes */
 app.get('/', routes.getFrontPage);
 app.get('/user/:user', routes.getContentByUser);
-app.get('/recently-updated', routes.getRecentlyUpdated);
+app.get('/package/:package', routes.getPackage);
 
 
 http.createServer(app).listen(app.get('port'), function () {

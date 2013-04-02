@@ -10,7 +10,7 @@
 <meta name="viewport" content="width=device-width">
 </head>
 
-<body class="{type}">
+<body>
 <h1>Your Private npm Repository</h1>
 <p>Total Packages: {content.totalPackages}</p>
 
@@ -21,6 +21,12 @@
     {/content.recentlyUpdated}
 </ul>
 
+<h2>Most depended upon</h2>
+<ul>
+    {#content.dependedUpon}
+        <li>{key} - {value}</id>
+    {/content.dependedUpon}
+</ul>
 
 <hr>
 <pre>{@contextDump/}</pre>

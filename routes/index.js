@@ -9,9 +9,7 @@ module.exports = {
         'use strict';
 
         db.getContentByUser({ 'user': req.params.user }, function (content, error) {
-            if (error) {
-                console.log('error handler here');
-            }
+            if (error) { console.log('error handler here'); }
             res.render('index', { content: content });
         });
     },
@@ -23,43 +21,49 @@ module.exports = {
 
         var contentModel = {};
 
-        // db.getAllPackages(function (content, error) {
-        //     if (error) {
-        //         console.log(error);
-        //     }
-
-        //     res.render('index', {
-        //         content: {
-        //             totalPackages: content.total_rows
-        //         }
-        //     });
-        // });
-
+        /* get all package metadata */
         db.getAllPackages(function (content, error) {
             if (error) { console.log(error); }
 
             contentModel.totalPackages = content.total_rows;
 
-            db.getRecentlyUpdated({ 'limit': 10 }, function (content, error) {
+            /* get recently updated */
+            db.getRecentlyUpdated({ 'limit': 10, descending: true }, function (content, error) {
                 if (error) { console.log(error); }
+
                 contentModel.recentlyUpdated = content;
 
-                res.render('index', { content: contentModel });
+                /* get most depended upon */
+                db.getDependedUpon(function (content, error) {
+                    var sortedContent = [],
+                        limit = 10,
+                        i;
+
+                    if (error) { console.log(error); }
+
+                    /* sort content response by value */
+                    // for (i in content) {
+                    //     if (content.hasOwnProperty(i)) {
+                    //         sortedContent.push(content[i]);
+                    //     }
+                    // }
+                    // sortedContent = sortedContent.sort(function (x, y) { return y.value - x.value; });
+                    sortedContent = content.sort(function (x, y) { return y.value - x.value; });
+
+                    /* add the top limit items to the content model */
+                    contentModel.dependedUpon = sortedContent.splice(0, limit);
+
+                    /* render template */
+                    res.render('index', { content: contentModel });
+                });
             });
         });
     },
 
 
 
-    getRecentlyUpdated: function (req, res) {
+    getPackage: function (req, res) {
         'use strict';
 
-        db.getRecentlyUpdated({ 'limit': 10, include_docs: true, descending: true }, function (content, error) {
-            if (error) {
-                console.log('ERROR: ' + error);
-            }
-            res.render('index', { content: content });
-        });
     }
-
 };

@@ -2,7 +2,7 @@
     "name": "pnpm-www",
     "version": "0.0.1",
     "description": "A private npm repository frontend",
-    "author": "James Young <jmeyoung@gmail.com>",
+    "author": "James Young <james@jamsyoung.com>",
     "main": "app.js",
     "repository": {
         "type": "git",
@@ -18,16 +18,17 @@
         "test-report": "make test-report"
     },
     "dependencies": {
-        "nodemon": "0.7.2",
-        "express": "3.1.0",
-        "dustjs-linkedin": "1.2.1",
-        "dustjs-helpers": "1.1.1",
         "consolidate": "0.8.0",
-        "cradle": "0.6.4"
+        "cradle": "0.6.4",
+        "dustjs-helpers": "1.1.1",
+        "dustjs-linkedin": "1.2.1",
+        "express": "3.1.0",
+        "node-promise": "0.5.6",
+        "nodemon": "0.7.2"
     },
     "devDependencies": {
-        "mocha": "1.8.1",
         "chai": "1.5.0",
+        "mocha": "1.8.1",
         "xunit-file": "0.0.2"
     },
     "analyze": true,
