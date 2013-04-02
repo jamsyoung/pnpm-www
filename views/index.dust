@@ -4,20 +4,26 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Your Private npm Repository</title>
-    <meta name="viewport" content="width=device-width">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Your Private npm Repository</title>
+<meta name="viewport" content="width=device-width">
 </head>
+
 <body class="{type}">
-    <h1>Your Private npm Repository</h1>
-    <p>Total Packages: {content.totalPackages}</p>
+<h1>Your Private npm Repository</h1>
+<p>Total Packages: {content.totalPackages}</p>
 
-    <h2>Recently updated</h2>
+<h2>Recently updated</h2>
+<ul>
     {#content.recentlyUpdated}
-    <p>{.}</p>
+        <li>{id} - {key}</li>
     {/content.recentlyUpdated}
+</ul>
 
-    <pre>{@contextDump/}</pre>
+
+<hr>
+<pre>{@contextDump/}</pre>
+
 </body>
 </html>
